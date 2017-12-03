@@ -22,8 +22,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <slf4j.version>1.7.7</slf4j.version>
-        <logback.version>1.1.11</logback.version>
     </properties>
 
     <dependencies>
@@ -37,14 +35,6 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.1</version>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.apache.phoenix</groupId>-->
-        <!--<artifactId>phoenix-client</artifactId>-->
-        <!--<version>1.0.0</version>-->
-        <!--<scope>system</scope>-->
-        <!--<systemPath>${basedir}/lib/phoenix-4.13.0-HBase-1.3-client.jar</systemPath>-->
-        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-core -->
         <dependency>
@@ -105,17 +95,6 @@
                     <include>**/*.xml</include>
                 </includes>
                 <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>${basedir}/lib</directory>
-                <targetPath>BOOT-INF/lib/</targetPath>
-                <includes>
-                    <include>**/*.jar</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <targetPath>BOOT-INF/classes/</targetPath>
             </resource>
         </resources>
         <plugins>
