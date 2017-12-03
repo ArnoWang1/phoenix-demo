@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nan.phoenixdemo.mapper.UserDetailMapper">
+
+    <resultMap id="UserDetail" type="com.nan.phoenixdemo.model.UserDetail"></resultMap>
+
+    <!--保存用户详情-->
+    <insert id="save" parameterType="com.nan.phoenixdemo.model.UserDetail">
+        UPSERT INTO user_db.user_detail(username, nickname, email, blog, create_date)
+        VALUES (#{username}, #{nickname}, #{email}, #{blog}, #{createDate})
+    </insert>
+
+    <!--根据username查询-->
+    <select id="findByUsername" resultMap="UserDetail">
+        SELECT
+            username username,
+            nickname nickname,
+            email email,
+            blog blog,
+            create_date createDate
+        FROM user_db.user_detail
+        WHERE username = #{username}
+    </select>
+
+    <!--根据username查询-->
+    <delete id="deleteByUsername">
+        DELETE FROM user_db.user_detail
+        WHERE username = #{username}
+    </delete>
+
+</mapper>
+

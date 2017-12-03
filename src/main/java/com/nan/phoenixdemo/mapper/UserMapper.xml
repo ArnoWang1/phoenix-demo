@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nan.phoenixdemo.mapper.UserMapper">
+
+    <resultMap id="User" type="com.nan.phoenixdemo.model.User"></resultMap>
+    <resultMap id="UserInfoDTO" type="com.nan.phoenixdemo.dto.UserInfoDTO"></resultMap>
+
+    <!--保存用户信息-->
+    <insert id="save">
+        UPSERT INTO user_db.user(id, username, password, create_date)
+        VALUES ( NEXT VALUE FOR user_db.user_seq, #{user.username}, #{user.password}, #{user.createDate})
+    </insert>
+
+    <!--根据username查询用户-->
+    <select id="findByUsername" resultMap="User">
+        SELECT
+            id id,
+            username username,
+            password password,
+            create_date createDate
+        FROM user_db.user
+        WHERE username = #{username}
+    </select>
+
+    <!--根据username查询用户-->
+    <delete id="deleteByUsername">
+        DELETE FROM user_db.user
+        WHERE username = #{username}
+    </delete>
+
+    <!--根据username查询用户完整信息-->
+    <select id="findUserInfoByUsername" resultMap="UserInfoDTO">
+        SELECT
+            U.username username,
+            U.password password,
+            UD.nickname nickname,
+            UD.email email,
+            UD.blog blog
+        FROM user_db.user U
+            INNER JOIN user_db.user_detail UD
+                ON U.username = UD.username
+        WHERE U.username = #{username}
+    </select>
+</mapper>
+
