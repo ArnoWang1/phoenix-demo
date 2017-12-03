@@ -22,7 +22,7 @@
         WHERE username = #{username}
     </select>
 
-    <!--根据username查询用户-->
+    <!--根据username删除用户-->
     <delete id="deleteByUsername">
         DELETE FROM user_db.user
         WHERE username = #{username}
