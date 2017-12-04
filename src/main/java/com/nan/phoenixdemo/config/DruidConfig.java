@@ -31,8 +31,8 @@ public class DruidConfig {
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(this.dbUrl);
         datasource.setDriverClassName(driverClassName);
-        datasource.setInitialSize(0);
-        datasource.setMinIdle(0);
+        datasource.setInitialSize(1);
+        datasource.setMinIdle(1);
         datasource.setMaxActive(200);
         datasource.setMaxWait(60000);
         datasource.setTimeBetweenEvictionRunsMillis(45000);
